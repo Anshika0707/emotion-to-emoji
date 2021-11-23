@@ -36,24 +36,24 @@ function speak() {
 
 function check() {
     img = document.getElementById('captured_image')
-    classifier.claffisy(img, gotResult);
+    classifier.classify(img, gotResult);
 }
 
-function gotResult(error, result) {
+function gotResult(error, results) {
     if (error) {
         console.error(error);
     } else {
-        console.log(result);
-        document.getElementById("result_emotion_name").innerHTML = result[0].label;
-        document.getElementById("result_emotion_name2").innerHTML = result[1].label;
-        prediction_1 = result[0].label;
-        prediction_2 = result[1].label;
+        console.log(results);
+        document.getElementById("result_emotion_name").innerHTML = results[0].label;
+        document.getElementById("result_emotion_name2").innerHTML = results[1].label;
+        prediction_1 = results[0].label;
+        prediction_2 = results[1].label;
         speak();
         if (results[0].label == "happy") {
             document.getElementById("update_emoji").innerHTML = "&#128522;";
         }
         if (results[0].label == "sad") {
-            document.getElementById("update_emoji").innerHTML = "&#128532;";   
+            document.getElementById("update_emoji").innerHTML = "&#128532;";
         }
         if (results[0].label == "angry") {
             document.getElementById("update_emoji").innerHTML = "&#128548;";
@@ -62,7 +62,7 @@ function gotResult(error, result) {
             document.getElementById("update_emoji2").innerHTML = "&#128522;";
         }
         if (results[1].label == "sad") {
-            document.getElementById("update_emoji2").innerHTML = "&#128532;";   
+            document.getElementById("update_emoji2").innerHTML = "&#128532;";
         }
         if (results[1].label == "angry") {
             document.getElementById("update_emoji2").innerHTML = "&#128548;";
